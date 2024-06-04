@@ -178,7 +178,7 @@ JVM-跨语言的平台
 2.  试想一下，在一个项目之中，并行处理用Clojure语言编写，展示层使用JRuby/Rails，中间层则是Java，每个应用层都将使用不同的编程语言来完成，而且，接口对每一层的开发者都是透明的，各种语言之间的交互不存在任何困难，就像使用自己语言的原生API一样方便，因为它们最终都运行在一个虚拟机之上。
   
 3.  对这些运行于Java虚拟机之上、Java之外的语言，来自系统级的、底层的支持正在迅速增强，以JSR-292为核心的一系列项目和功能改进（如DaVinci Machine项目、Nashorn引擎、InvokeDynamic指令、java.lang.invoke包等），推动Java虚拟机从“Java语言的虚拟机”向 “多语言虚拟机”的方向发展。
-  
+
 
 如何真正搞懂JVM？
 -----------
@@ -352,7 +352,7 @@ Java编译器输入的指令流基本上是一种**基于栈的指令集架构**
   
 2.  时至今日，尽管嵌入式平台已经不是Java程序的主流运行平台了（准确来说应该是HotSpot VM的宿主环境已经不局限于嵌入式平台了），那么为什么不将架构更换为基于寄存器的架构呢？
   - 因为基于栈的架构跨平台性好、指令集小，虽然相对于基于寄存器的架构来说，基于栈的架构编译得到的指令更多，执行性能也不如基于寄存器的架构好，但考虑到其跨平台性与移植性，我们还是选用栈的架构
-  
+
 
 
 
@@ -368,6 +368,7 @@ Java虚拟机的启动是通过引导类加载器（bootstrap class loader）创
 1.  一个运行中的Java虚拟机有着一个清晰的任务：执行Java程序
 2.  程序开始执行时他才运行，程序结束时他就停止
 3.  **执行一个所谓的Java程序的时候，真真正正在执行的是一个叫做Java虚拟机的进程**
+4.  在 Java 中，一个项目**不可以**有多个 JDK 版本，但可以启动**多个 JVM 虚拟机**实例，即使使用的是同一个 JDK。  让我解释一下： * **JDK (Java Development Kit)**:  JDK 是用于开发 Java 应用程序的软件包，包含了编译器、调试器等工具，以及 JRE。每个 JDK 版本都对应特定的 Java 规范，例如 JDK 8、JDK 11、JDK 17 等。一个项目只能使用一个 JDK 版本进行编译和运行。 * **JVM (Java Virtual Machine)**: JVM 是运行 Java 字节码的虚拟机。每个运行的 Java 程序都会启动一个 JVM 实例。  因此，虽然一个项目不能使用多个 JDK 版本，但你可以： * **在一个项目中启动多个使用同一个 JDK 的 JVM 实例。** 例如，你可以在一个项目中启动多个 Java 应用程序，每个应用程序都会启动一个独立的 JVM 实例。 * **在你的计算机上安装多个 JDK 版本，并为不同的项目选择不同的 JDK 版本。** 例如，你可以同时安装 JDK 8 和 JDK 11，并根据需要选择使用哪个版本。
 
 ### 虚拟机的退出
 
@@ -382,7 +383,7 @@ Java虚拟机的启动是通过引导类加载器（bootstrap class loader）创
 4.  某线程调用Runtime类或System类的exit()方法，或Runtime类的halt()方法，并且Java安全管理器也允许这次exit()或halt()操作。
   
 5.  除此之外，JNI（Java Native Interface）规范描述了用JNI Invocation API来加载或卸载 Java虚拟机时，Java虚拟机的退出情况。
-  
+
 
 
 
@@ -415,7 +416,7 @@ JVM发展历程
     *   编译器与解释器混合工作模式
     
 4.  只在Solaris平台短暂使用，其他平台上还是classic vm，英雄气短，终被Hotspot虚拟机替换
-  
+
 
 ### HotSpot VM（重点）
 
@@ -445,7 +446,7 @@ JVM发展历程
 
 ### JRockit（商用三大虚拟机之一）
 
-1.  专注于服务器端应用：它可以不太关注程序启动速度，因此JRockit内部不包含解析器实现，全部代码都靠即时编译器编译后执行。
+1.  专注于服务器端应用：它可以不太关注程序启动速度，**因此JRockit内部不包含解析器实现，全部代码都靠即时编译器编译后执行。**
   
 2.  大量的行业基准测试显示，JRockit JVM是世界上最快的JVM：使用JRockit产品，客户已经体验到了显著的性能提高（一些超过了70%）和硬件成本的减少（达50%）。
   
@@ -460,7 +461,7 @@ JVM发展历程
 5.  Oracle表达了整合两大优秀虚拟机的工作，大致在JDK8中完成。整合的方式是在HotSpot的基础上，移植JRockit的优秀特性。
   
 6.  高斯林：目前就职于谷歌，研究人工智能和水下机器人
-  
+
 
 ### IBM的J9（商用三大虚拟机之一）
 
@@ -473,7 +474,7 @@ JVM发展历程
 4.  2017年左右，IBM发布了开源J9VM，命名为openJ9，交给Eclipse基金会管理，也称为Eclipse OpenJ9
   
 5.  OpenJDK -> 是JDK开源了，包括了虚拟机
-  
+
 
 ### KVM和CDC/CLDC Hotspot
 
@@ -511,7 +512,7 @@ JVM发展历程
 2.  它是IElf和Intel联合开发的开源JVM，受到同样开源的Open JDK的压制，Sun坚决不让Harmony获得JCP认证，最终于2011年退役，IBM转而参与OpenJDK
   
 3.  虽然目前并没有Apache Harmony被大规模商用的案例，但是它的Java类库代码吸纳进了Android SDK。
-  
+
 
 ### Micorsoft JVM
 
@@ -520,7 +521,7 @@ JVM发展历程
 2.  只能在window平台下运行。但确是当时Windows下性能最好的Java VM。
   
 3.  1997年，Sun以侵犯商标、不正当竞争罪名指控微软成功，赔了Sun很多钱。微软WindowsXP SP3中抹掉了其VM。现在Windows上安装的jdk都是HotSpot。
-  
+
 
 ### Taobao JVM
 
@@ -537,7 +538,7 @@ JVM发展历程
     *   针对大数据场景的ZenGC
 4.  taobao vm应用在阿里产品上性能高，**硬件严重依赖inte1的cpu，损失了兼容性，但提高了性能**
   - 目前已经在淘宝、天猫上线，把Oracle官方JvM版本全部替换了。
-  
+
 
 ### Dalvik VM
 
@@ -551,9 +552,9 @@ JVM发展历程
   
 5.  执行的是编译以后的dex（Dalvik Executable）文件。执行效率比较高。
   - 它执行的dex（Dalvik Executable）文件可以通过class文件转化而来，使用Java语法编写应用程序，可以直接使用大部分的Java API等。
-  
+
 7.  Android 5.0使用支持提前编译（Ahead of Time Compilation，AoT）的ART VM替换Dalvik VM。
-  
+
 
 ### Graal VM（未来虚拟机）
 
