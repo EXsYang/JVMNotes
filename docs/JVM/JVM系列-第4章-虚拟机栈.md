@@ -11,6 +11,8 @@ description: JVM系列-第4章-虚拟机栈。
 cover: 'https://npm.elemecdn.com/lql_static@latest/logo/jvm.png'
 abbrlink: 5b1b6560
 date: 2020-11-10 10:38:42
+
+
 ---
 
 
@@ -66,7 +68,7 @@ date: 2020-11-10 10:38:42
 
 
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0002.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0002.png">
 
 - 虚拟机栈的生命周期
   - 生命周期和线程一致，也就是线程结束了，该虚拟机栈也销毁了
@@ -90,7 +92,7 @@ date: 2020-11-10 10:38:42
 - 对于栈来说不存在垃圾回收问题
   - 栈不需要GC，但是可能存在OOM
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0003.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0003.png">
 
 ### 虚拟机栈的异常
 
@@ -164,7 +166,7 @@ Exception in thread "main" java.lang.StackOverflowError
 
 **设置栈参数之后**
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0004.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0004.png">
 
 部分输出结果
 
@@ -194,13 +196,13 @@ Exception in thread "main" java.lang.StackOverflowError
 ### 栈运行原理
 
 1.  JVM直接对Java栈的操作只有两个，就是对栈帧的**压栈和出栈**，遵循先进后出（后进先出）原则
-  
+
 2.  在一条活动线程中，一个时间点上，只会有一个活动的栈帧。即只有当前正在执行的方法的栈帧（栈顶栈帧）是有效的。这个栈帧被称为**当前栈帧（Current Frame）**，与当前栈帧相对应的方法就是**当前方法（Current Method）**，定义这个方法的类就是**当前类（Current Class）**
 
 3.  执行引擎运行的所有字节码指令只针对当前栈帧进行操作。
-  
+
 4.  如果在该方法中调用了其他方法，对应的新的栈帧会被创建出来，放在栈的顶端，成为新的当前帧。
-  
+
 
 <img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0005.png">
 
@@ -234,7 +236,7 @@ Exception in thread "main" java.lang.StackOverflowError
 
 并行每个线程下的栈都是私有的，因此每个线程都有自己各自的栈，并且每个栈里面都有很多栈帧，栈帧的大小主要由局部变量表 和 操作数栈决定的
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0007.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0007.png">
 
 局部变量表
 -------
@@ -324,13 +326,13 @@ public class LocalVariablesTest {
 
 1、0-15  也就是有16行字节码
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0009.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0009.png">
 
 
 
 2、方法异常信息表
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0010.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0010.png">
 
 3、Misc
 
@@ -340,7 +342,7 @@ public class LocalVariablesTest {
 
 Java代码的行号和字节码指令行号的对应关系
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0012.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0012.png">
 
 
 
@@ -370,7 +372,7 @@ Java代码的行号和字节码指令行号的对应关系
 6.  如果需要访问局部变量表中一个64bit的局部变量值时，只需要使用前一个索引即可。（比如：访问long或double类型变量）
 7.  如果当前帧是由构造方法或者实例方法创建的，那么**该对象引用this将会存放在index为0的slot处**，其余的参数按照参数表顺序继续排列。（this也相当于一个变量）
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0014.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0014.png">
 
 ### Slot代码示例
 
@@ -388,7 +390,7 @@ Java代码的行号和字节码指令行号的对应关系
 
 局部变量表：this 存放在 index = 0 的位置
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0015.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0015.png">
 
 
 
@@ -408,7 +410,7 @@ Java代码的行号和字节码指令行号的对应关系
 
 weight 为 double 类型，index 直接从 3 蹦到了 5
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0016.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0016.png">
 
 
 
@@ -451,7 +453,7 @@ this 不存在与 static 方法的局部变量表中，所以无法调用
 
 局部变量 c 重用了局部变量 b 的 slot 位置
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0017.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0017.png">
 
 
 
@@ -481,9 +483,9 @@ this 不存在与 static 方法的局部变量表中，所以无法调用
 ### 补充说明
 
 1.  在栈帧中，与性能调优关系最为密切的部分就是前面提到的局部变量表。在方法执行时，虚拟机使用局部变量表完成方法的传递。
-  
+
 2.  局部变量表中的变量也是重要的垃圾回收根节点，只要被局部变量表中直接或间接引用的对象都不会被回收。
-  
+
 
 
 
@@ -493,13 +495,14 @@ this 不存在与 static 方法的局部变量表中，所以无法调用
 ### 操作数栈的特点
 
 1.  每一个独立的栈帧除了包含局部变量表以外，还包含一个后进先出（Last - In - First -Out）的 操作数栈，也可以称之为**表达式栈**（Expression Stack）
-  
+
 2.  操作数栈，在方法执行过程中，**根据字节码指令，往栈中写入数据或提取数据**，即入栈（push）和 出栈（pop）
+
   - 某些字节码指令将值压入操作数栈，其余的字节码指令将操作数取出栈。使用它们后再把结果压入栈，
   - 比如：执行复制、交换、求和等操作
-  
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0018.png">
+
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0018.png">
 
 
 
@@ -514,29 +517,29 @@ this 不存在与 static 方法的局部变量表中，所以无法调用
 
 
 1.  操作数栈，**主要用于保存计算过程的中间结果，同时作为计算过程中变量临时的存储空间**。
-  
+
 2.  操作数栈就是JVM执行引擎的一个工作区，当一个方法刚开始执行的时候，一个新的栈帧也会随之被创建出来，这时方法的操作数栈是空的。
-  
+
 3.  每一个操作数栈都会拥有一个明确的栈深度用于存储数值，其所需的最大深度在编译期就定义好了，保存在方法的Code属性中，为**maxstack**的值。
-  
+
 4.  栈中的任何一个元素都是可以任意的Java数据类型
-  
+
     *   32bit的类型占用一个栈单位深度
     *   64bit的类型占用两个栈单位深度
 5.  操作数栈并非采用访问索引的方式来进行数据访问的，而是只能通过标准的入栈和出栈操作来完成一次数据访问。**只不过操作数栈是用数组这个结构来实现的而已**
-  
+
 6.  如果被调用的方法带有返回值的话，其返回值将会被压入当前栈帧的操作数栈中，并更新PC寄存器中下一条需要执行的字节码指令。
-  
+
 7.  操作数栈中元素的数据类型必须与字节码指令的序列严格匹配，这由编译器在编译器期间进行验证，同时在类加载过程中的类检验阶段的数据流分析阶段要再次验证。
-  
+
 8.  另外，**我们说Java虚拟机的解释引擎是基于栈的执行引擎，其中的栈指的就是操作数栈**。
-  
 
 
 
 
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0020.jpg">
+
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0020.jpg">
 
 局部变量表就相当于食材
 
@@ -571,23 +574,23 @@ this 不存在与 static 方法的局部变量表中，所以无法调用
 10 return
 ```
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0021.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0021.png">
 
 ### 一步一步看流程
 
 1、首先执行第一条语句，PC寄存器指向的是0，也就是指令地址为0，然后使用bipush让操作数15入操作数栈。
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0022.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0022.png">
 
 2、执行完后，PC寄存器往下移，指向下一行代码，下一行代码就是将操作数栈的元素存储到局部变量表1的位置（istore_1），我们可以看到局部变量表的已经增加了一个元素。并且操作数栈为空了
 
 *   解释为什么局部变量表索引从 1 开始，因为该方法为实例方法，局部变量表索引为 0 的位置存放的是 this
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0023.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0023.png">
 
 3、然后PC下移，指向的是下一行。让操作数8也入栈，同时执行store操作，存入局部变量表中
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0024.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0024.png">
 
 
 
@@ -595,11 +598,11 @@ this 不存在与 static 方法的局部变量表中，所以无法调用
 
 iload_1：取出局部变量表中索引为1的数据入操作数栈
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0025.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0025.png">
 
 5、然后将操作数栈中的两个元素执行相加操作，并存储在局部变量表3的位置
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0026.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0026.png">
 
 
 
@@ -645,11 +648,11 @@ iload_1：取出局部变量表中索引为1的数据入操作数栈
 
 getSum() 方法字节码指令：最后带着个 ireturn
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0029.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0029.png">
 
 testGetSum() 方法字节码指令：一上来就加载 getSum() 方法的返回值()
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0030.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0030.png">
 
 
 
@@ -661,11 +664,11 @@ testGetSum() 方法字节码指令：一上来就加载 getSum() 方法的返回
 **栈顶缓存技术：Top Of Stack Cashing**
 
 1.  前面提过，基于栈式架构的虚拟机所使用的零地址指令更加紧凑，但完成一项操作的时候必然需要使用更多的入栈和出栈指令，这同时也就意味着将需要更多的指令分派（instruction dispatch）次数（也就是你会发现指令很多）和导致内存读/写次数多，效率不高。
-  
+
 2.  由于操作数是存储在内存中的，因此频繁地执行内存读/写操作必然会影响执行速度。为了解决这个问题，HotSpot JVM的设计者们提出了栈顶缓存（Tos，Top-of-Stack Cashing）技术，**将栈顶元素全部缓存在物理CPU的寄存器中，以此降低对内存的读/写次数，提升执行引擎的执行效率。**
-  
+
 3.  寄存器的主要优点：指令更少，执行速度快，但是指令集（也就是指令种类）很多
-  
+
 
 
 
@@ -675,9 +678,9 @@ testGetSum() 方法字节码指令：一上来就加载 getSum() 方法的返回
 **动态链接（或指向运行时常量池的方法引用）**
 
 1.  每一个栈帧内部都包含**一个指向运行时常量池中该栈帧所属方法的引用**。包含这个引用的目的就是**为了支持当前方法的代码能够实现动态链接**（Dynamic Linking），比如：invokedynamic指令
-  
-3.  在Java源文件被编译到字节码文件中时，所有的变量和方法引用都作为符号引用（Symbolic Reference）保存在class文件的常量池里。比如：描述一个方法调用了另外的其他方法时，就是通过常量池中指向方法的符号引用来表示的，那么**动态链接的作用就是为了将这些符号引用转换为调用方法的直接引用**
-  
+
+2.  在Java源文件被编译到字节码文件中时，所有的变量和方法引用都作为符号引用（Symbolic Reference）保存在class文件的常量池里。比如：描述一个方法调用了另外的其他方法时，就是通过常量池中指向方法的符号引用来表示的，那么**动态链接的作用就是为了将这些符号引用转换为调用方法的直接引用**
+
 
 
 
@@ -841,16 +844,16 @@ SourceFile: "DynamicLinkingTest.java"
 
 
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0031.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0031.png">
 
 
 
 **为什么要用常量池呢？**
 
 1.  因为在不同的方法，都可能调用常量或者方法，所以只需要存储一份即可，然后记录其引用即可，节省了空间。
-  
+
 2.  常量池的作用：就是为了提供一些符号和常量，便于指令的识别
-  
+
 
 
 
@@ -1009,9 +1012,9 @@ invokespecial 体现为早期绑定
 ### 多态与绑定
 
 1.  随着高级语言的横空出世，类似于Java一样的基于面向对象的编程语言如今越来越多，尽管这类编程语言在语法风格上存在一定的差别，但是它们彼此之间始终保持着一个共性，那就是都支持封装、继承和多态等面向对象特性，既然这一类的编程语言具备多态特性，那么自然也就具备早期绑定和晚期绑定两种绑定方式。
-  
+
 2.  Java中任何一个普通的方法其实都具备虚函数的特征，它们相当于C++语言中的虚函数（C++中则需要使用关键字virtual来显式定义）。如果在Java程序中不希望某个方法拥有虚函数的特征时，则可以使用关键字final来标记这个方法。
-  
+
 
 #### 虚方法与非虚方法
 
@@ -1136,18 +1139,18 @@ interface MethodInterface {
 
 Son 类中 show() 方法的字节码指令如下
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0032.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0032.png">
 
 
 
 #### 关于 invokedynamic 指令
 
 1.  JVM字节码指令集一直比较稳定，一直到Java7中才增加了一个invokedynamic指令，这是Java为了实现【动态类型语言】支持而做的一种改进。
-  
+
 2.  但是在Java7中并没有提供直接生成invokedynamic指令的方法，需要借助ASM这种底层字节码工具来产生invokedynamic指令。直到Java8的Lambda表达式的出现，invokedynamic指令的生成，在Java中才有了直接的生成方式。
-  
+
 3.  Java7中增加的动态语言类型支持的本质是对Java虚拟机规范的修改，而不是对Java语言规则的修改，这一块相对来讲比较复杂，增加了虚拟机中的方法调用，最直接的受益者就是运行在Java平台的动态语言的编译器。
-  
+
 
 ```java
 @FunctionalInterface
@@ -1176,7 +1179,7 @@ public class Lambda {
 }
 ```
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0033.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0033.png">
 
 
 
@@ -1185,13 +1188,14 @@ public class Lambda {
 ### 动态语言和静态语言
 
 1.  动态类型语言和静态类型语言两者的区别就在于**对类型的检查是在编译期还是在运行期**，满足前者就是静态类型语言，反之是动态类型语言。
-  
+
 2.  说的再直白一点就是，静态类型语言是判断变量自身的类型信息；动态类型语言是判断变量值的类型信息，变量没有类型信息，变量值才有类型信息，这是动态语言的一个重要特征。
-  
+
 
 Java：String info = "mogu blog";     		(Java是静态类型语言的，会先编译就进行类型检查)
     JS：var name = "shkstart";    var name = 10;	（运行时才进行检查）
     
+
     Python: info = 130.5 (运行时才检查)
 
 
@@ -1210,7 +1214,7 @@ Java：String info = "mogu blog";     		(Java是静态类型语言的，会先�
 **IllegalAccessError介绍**
 
 1.  程序试图访问或修改一个属性或调用一个方法，这个属性或方法，你没有权限访问。一般的，这个会引起编译器异常。这个错误如果发生在运行时，就说明一个类发生了不兼容的改变。
-3.  比如，你把应该有的jar包放从工程中拿走了，或者Maven中存在jar包冲突
+2.  比如，你把应该有的jar包放从工程中拿走了，或者Maven中存在jar包冲突
 
 
 
@@ -1221,19 +1225,19 @@ Java：String info = "mogu blog";     		(Java是静态类型语言的，会先�
 
 
 1.  在面向对象的编程中，会很频繁的使用到**动态分派**，如果在每次动态分派的过程中都要重新在类的方法元数据中搜索合适的目标的话就可能影响到执行效率。因此，为了提高性能，**JVM采用在类的方法区建立一个虚方法表（virtual method table）来实现**，非虚方法不会出现在表中。使用索引表来代替查找。【上面动态分派的过程，我们可以看到如果子类找不到，还要从下往上找其父类，非常耗时】
+
+2.  每个类中都有一个虚方法表，表中存放着各个方法的实际入口。
+
+3.  虚方法表是什么时候被创建的呢？虚方法表会在类加载的链接阶段被创建并开始初始化，类的变量初始值准备完成之后，JVM会把该类的虚方法表也初始化完毕。
+
   
-3.  每个类中都有一个虚方法表，表中存放着各个方法的实际入口。
-  
-4.  虚方法表是什么时候被创建的呢？虚方法表会在类加载的链接阶段被创建并开始初始化，类的变量初始值准备完成之后，JVM会把该类的虚方法表也初始化完毕。
-  
-  
-  
+
 
 **例子1**
 
 如图所示：如果类中重写了方法，那么调用的时候，就会直接在该类的虚方法表中查找
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0034.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0034.png">
 
 1、比如说son在调用toString的时候，Son没有重写过，Son的父类Father也没有重写过，那就直接调用Object类的toString。那么就直接在虚方法表里指明toString直接指向Object类。
 
@@ -1247,33 +1251,33 @@ Java：String info = "mogu blog";     		(Java是静态类型语言的，会先�
 
 
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0036.jpg">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0036.jpg">
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0037.jpg">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0037.jpg">
 
 
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0038.jpg">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0038.jpg">
 
 
 
 方法返回地址
 --------
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0039.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0039.png">
 
 > 在一些帖子里，方法返回地址、动态链接、一些附加信息  也叫做帧数据区
 
 1.  存放调用该方法的pc寄存器的值。一个方法的结束，有两种方式：
-  
+
     *   正常执行完成
     *   出现未处理的异常，非正常退出
 2.  无论通过哪种方式退出，在方法退出后都返回到该方法被调用的位置。方法正常退出时，**调用者的pc计数器的值作为返回地址，即调用该方法的指令的下一条指令的地址**。而通过异常退出的，返回地址是要通过异常表来确定，栈帧中一般不会保存这部分信息。
-  
+
 3.  本质上，方法的退出就是当前栈帧出栈的过程。此时，需要恢复上层方法的局部变量表、操作数栈、将返回值压入调用者栈帧的操作数栈、设置PC寄存器值等，让调用者方法继续执行下去。
-  
+
 4.  正常完成出口和异常完成出口的区别在于：通过异常完成出口退出的不会给他的上层调用者产生任何的返回值。
-  
+
 
 
 
@@ -1287,7 +1291,7 @@ Java：String info = "mogu blog";     		(Java是静态类型语言的，会先�
 
 1.  执行引擎遇到任意一个方法返回的字节码指令（return），会有返回值传递给上层的方法调用者，简称**正常完成出口**；
 2.  一个方法在正常调用完成之后，究竟需要使用哪一个返回指令，还需要根据方法返回值的实际数据类型而定。
-3. 在字节码指令中，返回指令包含：
+3.  在字节码指令中，返回指令包含：
     - ireturn：当返回值是boolean，byte，char，short和int类型时使用
 
     - lreturn：Long类型
@@ -1305,11 +1309,11 @@ Java：String info = "mogu blog";     		(Java是静态类型语言的，会先�
 **异常退出：**
 
 1.  在方法执行过程中遇到异常（Exception），并且这个异常没有在方法内进行处理，也就是只要在本方法的异常表中没有搜索到匹配的异常处理器，就会导致方法退出，简称**异常完成出口**。
-  
-2.  方法执行过程中，抛出异常时的异常处理，存储在一个异常处理表，方便在发生异常的时候找到处理异常的代码
-  
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0040.png">
+2.  方法执行过程中，抛出异常时的异常处理，存储在一个异常处理表，方便在发生异常的时候找到处理异常的代码
+
+
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0040.png">
 
 
 
@@ -1321,7 +1325,7 @@ Java：String info = "mogu blog";     		(Java是静态类型语言的，会先�
 *   target ：出现异常跳转至地址为 11 的指令执行
 *   type ：捕获异常的类型
 
-<img src="https://npm.elemecdn.com/youthlql@1.0.8/JVM/chapter_004/0041.png">
+<img src="https://raw.githubusercontent.com/EXsYang/PicGo-images-hosting/main/images/0041.png">
 
 
 
